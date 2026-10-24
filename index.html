@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07090d">
+  <meta name="description" content="Discover LUXEVO, a conceptual premium technology collection featuring smartphones, smartwatches, tablets, earbuds and laptops.">
+  <title>LUXEVO | Infinite Possibilities</title>
+  <style>
+    :root { color-scheme: dark; --bg:#07090d; --panel:#11141b; --panel2:#171921; --text:#f6f2ea; --muted:#b6bac5; --gold:#e7bf85; --gold-dark:#b58e53; --violet:#b994ff; --line:rgba(231,191,133,.20); --radius:22px; --max:1310px; }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none} button,input,textarea{font:inherit} button{cursor:pointer} img{display:block;max-width:100%}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #e9c98d;outline-offset:4px}
+    .skip-link{position:absolute;left:16px;top:-80px;z-index:100;background:var(--gold);color:#08080a;padding:10px 16px;border-radius:5px}.skip-link:focus{top:12px}
+    .container{width:min(calc(100% - 64px),var(--max));margin-inline:auto}
+    .site-header{z-index:50;position:sticky;top:0;background:rgba(6,8,13,.93);border-bottom:1px solid rgba(231,191,133,.12);backdrop-filter:blur(19px);-webkit-backdrop-filter:blur(19px)}
+    .header-inner{min-height:82px;display:flex;align-items:center;gap:34px}
+    .brand{display:inline-flex;align-items:center;gap:13px;flex-shrink:0;line-height:1;color:white;font-weight:650;font-size:23px;letter-spacing:.28em;white-space:nowrap}
+    .brand-mark{font-family:Georgia,serif;font-style:italic;color:#bd9cff;font-weight:bold;font-size:46px;letter-spacing:-.08em;line-height:1;filter:drop-shadow(0 0 8px #6651e0) drop-shadow(0 0 16px #3771ff)}
+    .nav-links{display:flex;align-items:center;gap:32px;margin:auto;list-style:none;padding:0}
+    .nav-links a{color:#d9d9de;font-size:13px;letter-spacing:.06em;font-weight:550;transition:color .2s}
+    .nav-links a:hover,.nav-links a[aria-current]{color:var(--gold)}
+    .header-actions{display:flex;gap:10px;align-items:center}
+    .icon-btn{position:relative;min-width:44px;min-height:44px;display:grid;place-items:center;border:1px solid transparent;border-radius:50%;background:transparent;color:var(--text)}
+    .icon-btn:hover{background:#242027;border-color:#514439}
+    .icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+    .count{position:absolute;top:-1px;right:-4px;min-width:19px;height:19px;padding:0 3px;border-radius:10px;background:var(--gold);color:#120e0b;font-size:11px;font-weight:850;display:grid;place-items:center}
+    .menu-btn{display:none}
+    .btn{border:1px solid var(--gold);padding:13px 22px;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-size:13px;font-weight:750;letter-spacing:.04em;border-radius:7px;white-space:nowrap;transition:transform .2s,background .2s,border .2s,color .2s}
+    .btn:hover:not(:disabled){transform:translateY(-2px)}.btn:disabled{cursor:not-allowed;opacity:.52}
+    .btn-primary{color:#17110a;background:linear-gradient(135deg,#ffe1ae,#dbad70);border-color:#efc992}
+    .btn-primary:hover{background:#ffe0aa}
+    .btn-outline{color:var(--text);background:rgba(6,8,14,.37)}.btn-outline:hover{background:rgba(220,185,122,.13)}
+    .btn-subtle{color:var(--gold);background:#16171d;border:1px solid rgba(229,190,127,.40)}
+    .btn-arrow{font-size:18px;line-height:1}
+    .header-cta{border-radius:99px;padding:9px 20px;min-height:42px}
+    .eyebrow{font-size:11px;font-weight:800;letter-spacing:.35em;color:var(--gold);text-transform:uppercase}
+    .hero{min-height:680px;display:grid;grid-template-columns:1fr 1.1fr;gap:35px;align-items:center;padding-block:68px 72px;position:relative}
+    .hero::before{content:"";pointer-events:none;position:absolute;left:-20vw;top:-25%;height:100%;width:85%;background:radial-gradient(ellipse,rgba(36,46,92,.25),transparent 70%)}
+    .hero-copy{position:relative;z-index:2;padding-bottom:14px}
+    .hero-eyebrow{display:flex;align-items:center;gap:17px;margin-bottom:24px}.hero-eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+    .hero h1{font-size:clamp(3.3rem,5.7vw,6.6rem);line-height:1.02;letter-spacing:-.085em;margin:0 0 24px;font-weight:750}
+    .hero h1 span{display:block}.hero h1 .gradient{background:linear-gradient(135deg,#fff4e5,#efc78a 53%,#ac7d4b);color:transparent;background-clip:text;-webkit-background-clip:text}
+    .hero-description{font-size:clamp(16px,1.4vw,19px);color:#d0cfd4;max-width:450px;line-height:1.8;margin:0 0 31px}
+    .hero-actions{display:flex;gap:13px;flex-wrap:wrap}.hero-note{display:flex;gap:12px;align-items:center;margin-top:36px;font-size:10px;color:#bdb0aa;letter-spacing:.28em}.hero-note::before{content:"";width:34px;height:1px;background:var(--gold)}
+    .hero-visual{height:560px;position:relative;isolation:isolate;border-radius:20px;overflow:hidden;border:1px solid rgba(220,190,139,.18);box-shadow:0 34px 90px rgba(0,0,0,.45);background:#151418}
+    .hero-visual::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,10,15,.20),transparent 37%),linear-gradient(0deg,rgba(2,2,7,.86),transparent 41%)}
+    .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center 45%;animation:heroFloat 12s ease-in-out infinite alternate}
+    .hero-glow{position:absolute;inset:auto -70px -160px auto;width:380px;height:380px;pointer-events:none;border-radius:50%;background:rgba(118,76,255,.24);filter:blur(95px);z-index:1}
+    .visual-caption{position:absolute;z-index:3;bottom:27px;left:26px;right:26px;display:flex;gap:15px;justify-content:space-between;align-items:end}
+    .visual-caption h2{font-size:clamp(18px,2vw,28px);margin:3px 0 0;font-weight:600;letter-spacing:.06em}.visual-index{font-size:12px;color:#f6d9ae;white-space:nowrap;letter-spacing:.2em}
+    .divider-line{height:1px;background:linear-gradient(90deg,transparent,rgba(230,192,134,.5),transparent)}
+    .discovery-band{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-block:25px 28px}
+    .discovery-item{display:flex;gap:17px;align-items:center;color:#d0c9c1;font-size:11px;font-weight:750;letter-spacing:.15em;text-transform:uppercase}
+    .discovery-item .num{font-size:24px;color:#b58e63;font-weight:350}
+    section.collection{padding-block:105px 85px}
+    .section-head{display:flex;justify-content:space-between;gap:22px;align-items:end;margin-bottom:33px}
+    .section-head h2{font-size:clamp(2.2rem,4vw,4.2rem);letter-spacing:-.055em;line-height:1.12;margin:8px 0 10px;font-weight:650}
+    .section-head p{margin:0;color:var(--muted);max-width:500px;font-size:14px}
+    .filter-area{display:flex;gap:12px;align-items:center;margin:14px 0 25px;flex-wrap:wrap}
+    .search-wrap{position:relative;flex:1;min-width:215px;max-width:440px}
+    .search-wrap .icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#c0b5a8}
+    .search-input{display:block;width:100%;background:#12151c;border:1px solid rgba(224,194,144,.23);color:var(--text);border-radius:9px;padding:12px 15px 12px 46px;min-height:48px}
+    .search-input::placeholder{color:#9da2ac}
+    .filter-clear{background:transparent;border:1px solid #51453b;color:#e8ca9c;padding:10px 17px;border-radius:8px;min-height:48px}
+    .filter-status{margin-left:auto;font-size:13px;color:#c1b8ab}
+    .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+    .product-card{position:relative;min-height:475px;background:#101218;border:1px solid rgba(207,183,147,.20);border-radius:15px;overflow:hidden;isolation:isolate;transition:border .25s,transform .25s;display:flex;flex-direction:column;justify-content:end}
+    .product-card:hover{transform:translateY(-5px);border-color:rgba(231,191,133,.54)}
+    .product-card.feature{grid-column:span 2}
+    .product-card figure{position:absolute;inset:0;margin:0}
+    .product-card img{height:100%;width:100%;object-fit:cover;object-position:center 45%;transition:transform .7s cubic-bezier(.2,.65,.1,1)}
+    .product-card:hover img{transform:scale(1.045)}
+    .product-card.feature img{object-position:center 42%}
+    .product-card::after{position:absolute;inset:0;content:"";z-index:0;pointer-events:none;background:linear-gradient(0deg,rgba(3,4,9,.97),rgba(3,4,9,.70) 27%,transparent 71%)}
+    .card-badge{position:absolute;top:20px;left:20px;z-index:2;color:#edd3ac;border:1px solid rgba(237,211,172,.37);background:rgba(3,4,8,.68);backdrop-filter:blur(7px);font-size:10px;letter-spacing:.21em;padding:8px 12px;border-radius:99px;text-transform:uppercase}
+    .product-card .card-content{position:relative;z-index:2;padding:28px}
+    .card-number{font-size:10px;letter-spacing:.24em;color:#c4a177;font-weight:800}.product-card h3{font-size:clamp(1.5rem,2vw,2.1rem);line-height:1.1;letter-spacing:-.025em;margin:8px 0 8px;font-weight:650}
+    .product-card .card-content p{color:#d4d4d6;font-size:13px;margin:0 0 18px;max-width:315px}
+    .card-actions{display:flex;gap:8px;flex-wrap:wrap}.card-actions .btn{padding:9px 15px;min-height:42px;font-size:12px}
+    .empty-state{border:1px dashed #76634c;border-radius:12px;padding:35px;text-align:center;margin-block:30px;color:var(--muted)}
+    .story{padding:65px 0 100px}
+    .story-frame{border-radius:19px;position:relative;min-height:355px;padding:64px clamp(25px,6vw,82px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;border:1px solid rgba(232,200,157,.2);background:radial-gradient(ellipse at 85% 60%,rgba(91,58,153,.27),transparent 46%),radial-gradient(ellipse at 10% 10%,rgba(114,82,32,.27),transparent 52%),#101218}
+    .story-frame::after{content:"∞";position:absolute;right:4%;top:17%;font-family:Georgia,serif;font-size:clamp(10rem,24vw,24rem);color:rgba(179,144,245,.15);filter:drop-shadow(0 0 24px rgba(120,83,246,.22));line-height:1;pointer-events:none}
+    .story-frame h2{position:relative;z-index:1;font-size:clamp(2.5rem,4.5vw,4.8rem);line-height:1.06;letter-spacing:-.06em;max-width:700px;margin:18px 0 15px}
+    .story-frame p{position:relative;z-index:1;max-width:525px;color:#cfc9c6;margin:0}
+    .connect{padding-bottom:90px}
+    .connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch}
+    .connect-text{padding:30px 0}.connect-text h2{font-size:clamp(2.3rem,4vw,4rem);line-height:1.12;letter-spacing:-.06em;margin:10px 0 18px}.connect-text p{color:#c4c7ce;max-width:450px}
+    .inquiry-box{border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#1c1b21,#111319);padding:30px}
+    .inquiry-box h3{margin:0 0 9px;font-size:22px}.inquiry-box p{color:var(--muted);margin:0 0 20px;font-size:14px}
+    .inquiry-items{margin:0 0 18px;padding-left:20px;color:#e7d0b1;font-size:14px;min-height:26px}
+    .field-label{font-size:13px;color:#f3e5d5;display:block;margin:0 0 6px}.field-input{width:100%;padding:12px 14px;background:#0c0e14;border:1px solid #5d554c;border-radius:8px;color:var(--text);min-height:46px;margin-bottom:15px}
+    textarea.field-input{resize:vertical;min-height:94px}.hint{font-size:12px;color:#adafb7;margin-top:14px!important}
+    .form-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .site-footer{padding-block:35px 28px;border-top:1px solid rgba(227,196,149,.17);background:#0a0c11}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}.footer-row .brand{font-size:17px}.footer-row .brand-mark{font-size:34px}
+    .footer-note{max-width:780px;color:#aab0b9;font-size:12px;margin-top:20px}.footer-links{display:flex;gap:25px;font-size:13px;color:#d3ccbf}
+    .overlay{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.79);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:16px}
+    .overlay[hidden],.toast[hidden],.empty-state[hidden]{display:none!important}
+    .dialog{width:min(940px,100%);max-height:calc(100dvh - 32px);overflow-y:auto;position:relative;border:1px solid rgba(240,202,149,.36);border-radius:18px;background:#11141a;box-shadow:0 28px 100px #000}
+    .close-dialog{position:absolute;top:16px;right:16px;z-index:3;border:1px solid #514943;border-radius:50%;background:rgba(5,5,10,.78);color:white;width:42px;height:42px;font-size:25px;display:grid;place-items:center}
+    .dialog-layout{display:grid;grid-template-columns:1fr 1fr}.dialog-photo{width:100%;height:570px;max-height:75dvh;object-fit:cover}.dialog-copy{padding:65px 35px 35px;display:flex;flex-direction:column;justify-content:center}
+    .dialog-copy h2{font-size:clamp(2.2rem,3.6vw,3.7rem);line-height:1.1;letter-spacing:-.055em;margin:15px 0 12px}.dialog-copy p{color:#cbd0d8}.dialog-copy .micro{font-size:12px;color:#bbb9be}
+    .dialog-action-row{margin-top:25px;display:flex;gap:10px;flex-wrap:wrap}
+    .drawer{width:min(490px,100%);height:100%;max-height:100dvh;margin-left:auto;border-left:1px solid var(--line);background:#111318;position:relative;padding:73px 28px 30px;overflow:auto}
+    .overlay.drawer-overlay{padding:0;justify-content:end}.drawer h2{font-size:30px;margin:0 0 4px}.drawer .intro{font-size:13px;color:var(--muted)}
+    .drawer-list{list-style:none;margin:27px 0;padding:0;display:grid;gap:13px}.drawer-item{display:flex;align-items:center;gap:12px;padding:10px;background:#1e2027;border:1px solid #39333a;border-radius:10px}
+    .drawer-item img{width:62px;height:65px;object-fit:cover;border-radius:5px}.drawer-item span{flex:1;font-size:13px;font-weight:700}.drawer-item button{padding:8px;border:0;color:#ffdbac;background:none;font-size:12px;text-decoration:underline}
+    .drawer-note{font-size:12px;color:#b3b4bd;margin-top:18px}.drawer-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .toast{position:fixed;z-index:250;left:50%;bottom:26px;transform:translateX(-50%);max-width:min(500px,calc(100vw - 30px));padding:12px 20px;border:1px solid #8a6846;border-radius:8px;background:#2a251f;color:#fff0dc;font-size:14px;box-shadow:0 12px 34px #0009;text-align:center}
+
+    /* LUXEVO authenticated customer account interface */
+    .header-auth{min-height:41px;padding:9px 14px;border-radius:99px;font-size:12px}
+    .auth-status{color:#f1ca95;font-size:11px;white-space:nowrap;letter-spacing:.05em}
+    .auth-dialog{width:min(460px,100%);padding:38px clamp(20px,4vw,38px) 32px}
+    .auth-dialog h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.06em;line-height:1.1;margin:12px 0}
+    .auth-copy{font-size:14px;color:#c9c7cd;margin:0 0 18px}
+    .auth-demo{border:1px solid rgba(231,191,133,.32);background:#211c19;padding:14px;border-radius:10px;font-size:12px;line-height:1.8;color:#f1dfc8;margin-bottom:22px}
+    .auth-demo code{color:#fff1d7;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+    .auth-label{display:block;font-size:13px;font-weight:650;margin:15px 0 6px;color:#f9e8cf}
+    .auth-input{display:block;width:100%;min-height:48px;border:1px solid #71614d;background:#090c13;color:#f6f2ea;padding:12px 14px;border-radius:8px}
+    .auth-input::placeholder{color:#aaa8ad}
+    .auth-show{display:inline-flex;align-items:center;gap:8px;color:#d2c7b7;font-size:12px;margin:14px 0}
+    .auth-show input{width:17px;height:17px;accent-color:#e7bf85}
+    .auth-error{color:#ffd6cd;background:#512620;border-radius:7px;padding:10px;font-size:13px}
+    .auth-error[hidden]{display:none}
+    .auth-submit{width:100%;margin-top:5px}
+    .auth-warning{font-size:12px;color:#c3bec0;margin:15px 0 0}
+    @media(max-width:1050px){.auth-status{display:none}.header-auth{padding-inline:11px}}
+    @media(max-width:540px){.header-actions{gap:4px}.header-auth{min-height:38px;padding:7px 10px;font-size:12px}.header-cta{display:none}.auth-dialog{padding-top:50px}}
+    @keyframes heroFloat{from{transform:scale(1.01) translateY(0)}to{transform:scale(1.08) translateY(-7px)}}
+    @media (max-width:1050px){.header-inner{gap:16px}.nav-links{gap:17px}.brand{font-size:19px}.hero{grid-template-columns:1fr 1fr}.hero-visual{height:505px}.product-card{min-height:425px}}
+    @media (max-width:780px){.container{width:min(calc(100% - 36px),var(--max))}.header-inner{min-height:70px}.brand{font-size:18px;letter-spacing:.20em}.brand-mark{font-size:36px}.menu-btn{display:grid}.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:#0b0d13;box-shadow:0 24px 30px #0009;border-bottom:1px solid #5a4634;padding:15px 22px 24px;gap:5px;flex-direction:column;align-items:stretch}.nav-links[data-open="true"]{display:flex}.nav-links a{display:block;padding:12px;font-size:16px}.header-actions{margin-left:auto}.header-cta{display:none}.hero{grid-template-columns:1fr;padding-top:55px;padding-bottom:45px;min-height:auto;gap:30px}.hero h1{font-size:clamp(3.2rem,11vw,5.6rem)}.hero-visual{height:490px}.discovery-band{grid-template-columns:1fr;gap:9px}.discovery-item{font-size:10px}.discovery-item .num{font-size:18px}section.collection{padding-block:65px}.section-head{display:block}.filter-status{margin-left:0}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-card.feature{grid-column:span 2}.product-card{min-height:390px}.connect-grid{grid-template-columns:1fr;gap:5px}.dialog-layout{grid-template-columns:1fr 1.2fr}.dialog-photo{height:480px}}
+    @media (max-width:540px){.hero-visual{height:380px}.visual-caption h2{font-size:20px}.hero-note{font-size:9px;letter-spacing:.18em}.hero-actions .btn{flex:1;padding-inline:12px}.section-head h2{font-size:2.6rem}.product-grid{grid-template-columns:1fr}.product-card,.product-card.feature{grid-column:auto;min-height:470px}.product-card .card-content{padding:22px}.product-card h3{font-size:2rem}.story{padding-block:38px 65px}.story-frame{min-height:320px;padding:40px 26px}.dialog{max-width:465px}.dialog-layout{grid-template-columns:1fr}.dialog-photo{height:250px;max-height:none;object-position:center 45%}.dialog-copy{padding:20px 24px 30px}.dialog-copy h2{font-size:2.4rem}.footer-links{gap:18px}.inquiry-box{padding:20px}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+    /* Account panel / a11y: standard fields, visible focus, clear feedback. */
+    .auth-dialog{max-height:min(92vh,860px);overflow:auto}
+    .auth-switch{display:flex;gap:7px;border:1px solid rgba(231,191,133,.28);background:#0c1017;border-radius:12px;padding:5px;margin-bottom:23px}
+    .auth-switch button{flex:1;border:0;background:transparent;color:#ddd4c9;border-radius:8px;font-weight:700;min-height:43px;padding:9px}
+    .auth-switch button[aria-selected="true"]{background:linear-gradient(130deg,#f5d4a1,#d8a765);color:#1a1310}
+    .auth-note{font-size:12px;color:#cfc3b2;margin:14px 0}
+    .auth-link{border:0;padding:7px 0;background:transparent;color:#f5d4a1;text-decoration:underline;text-underline-offset:4px;font-weight:650}
+    .auth-link-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:15px}
+    .auth-input:disabled,.auth-submit[disabled]{opacity:.65;cursor:progress}
+    #auth-confirm-wrap[hidden],#auth-password-wrap[hidden],#auth-show-row[hidden],#auth-back-login[hidden],#auth-tabs[hidden],#auth-notice[hidden]{display:none!important}
+    .auth-notice{padding:12px;border-radius:9px;background:#192b23;color:#d4f5e3;border:1px solid #507f66;font-size:13px;margin:12px 0}
+    .auth-caption{color:#c6b9a7;margin:0;font-size:12px}
+    .auth-status{max-width:190px;overflow:hidden;text-overflow:ellipsis}
+    @media(max-width:540px){.auth-switch button{font-size:12px}.auth-dialog{max-height:96vh}}
+
+    /* LUXEVO product customization: public browsing, authenticated editing. */
+    .btn-subtle{border-color:#715a79;color:#f4d8ff;background:rgba(80,44,102,.26)}
+    .btn-subtle:hover{border-color:#c9aaff;background:rgba(92,46,131,.48)}
+    .customizer-dialog{width:min(1020px,100%)}
+    .customizer-layout{display:grid;grid-template-columns:1fr 1fr;min-height:570px}
+    .customizer-showcase{--accent-glow:#ab85ff;position:relative;min-height:560px;background:#0a0b11;overflow:hidden;display:flex;align-items:center;justify-content:center;border-right:1px solid #473747;box-shadow:inset 0 0 90px color-mix(in srgb,var(--accent-glow),transparent 84%)}
+    .customizer-showcase img{height:560px;width:100%;object-fit:cover;filter:saturate(1.05)}
+    .customizer-showcase:after{position:absolute;content:'';inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(3,4,9,.95),transparent 33%)}
+    .customize-image-label{position:absolute;z-index:2;left:24px;bottom:25px;right:24px;display:grid;gap:7px}
+    .customize-image-label strong{display:block;font-size:clamp(18px,2.6vw,28px);color:#fff;letter-spacing:.03em;text-shadow:0 0 18px var(--accent-glow);overflow-wrap:anywhere}
+    .customizer-fields{padding:52px clamp(19px,3vw,40px) 30px;align-self:center}
+    .customizer-fields h2{font-size:clamp(28px,3.3vw,46px);line-height:1.08;letter-spacing:-.045em;margin:13px 0 9px}
+    .customize-summary{color:#d6c8bf;font-size:14px;margin:0 0 10px}
+    .customize-user{font-size:12px;color:#cfbaff;overflow-wrap:anywhere}
+    .accent-fieldset{border:0;padding:0;margin:26px 0 10px;display:grid;gap:6px}
+    .accent-fieldset legend{color:#f4e0c0;font-size:13px;font-weight:750;margin-bottom:8px}
+    .accent-option{min-height:43px;display:flex;align-items:center;gap:11px;cursor:pointer;color:#e9e4eb;font-size:13px;padding:6px 9px;border:1px solid transparent;border-radius:7px}
+    .accent-option:has(input:checked){border-color:#aa8a57;background:#252129}
+    .accent-option input{width:18px;height:18px;accent-color:#e1b879}
+    .swatch{width:18px;height:18px;border-radius:50%;border:1px solid #fff7}
+    .swatch-violet{background:#9b6cff}.swatch-gold{background:#e5ba75}.swatch-blue{background:#428dff}
+    .optional{color:#bbb4b9;font-size:12px;font-weight:400}
+    .customize-limit{text-align:right;font-size:11px;color:#c6c2cb;margin:5px 0 12px}
+    .concept-disclaimer{color:#aeb1b9;font-size:12px;line-height:1.5}
+    .customize-feedback{font-size:12px;color:#d9f7e8;min-height:18px}
+    .saved-designs{margin-top:25px;padding-top:20px;border-top:1px solid rgba(231,191,133,.24)}
+    .saved-designs h4{margin:0 0 4px;font-size:15px;color:#f1d3a0}
+    .saved-explainer{font-size:12px;color:#bcc0cb}
+    .saved-design-list{list-style:none;display:grid;gap:8px;padding:0;margin:10px 0}
+    .saved-design-list li{display:flex;gap:8px;justify-content:space-between;align-items:center;padding:9px;background:#17191f;border-radius:8px;font-size:12px;flex-wrap:wrap}
+    .saved-design-list button{border:1px solid #b99969;color:#f5d8a6;background:transparent;border-radius:6px;padding:6px 9px}
+    @media(max-width:760px){.customizer-layout{grid-template-columns:1fr}.customizer-showcase{min-height:235px;height:235px;border-right:0;border-bottom:1px solid #473747}.customizer-showcase img{height:235px}.customizer-fields{padding:24px}.customizer-dialog{max-width:520px}.customizer-dialog .close-dialog{top:9px;right:9px}}
+
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="#home" aria-label="LUXEVO, home"><span class="brand-mark" aria-hidden="true">∞</span><span>LUXEVO</span></a>
+      <nav aria-label="Main navigation" id="main-nav">
+        <ul class="nav-links" id="nav-links" data-open="false">
+          <li><a href="#home" aria-current="page">Home</a></li><li><a href="#collection">Products</a></li><li><a href="#about">Our Vision</a></li><li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" id="nav-search" aria-label="Search products" title="Search products"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+        <button class="icon-btn" type="button" id="open-drawer" aria-label="Open inquiry list, 0 products" title="Inquiry list"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M3 5h2l2.2 11h11.5l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="count" id="cart-count" aria-hidden="true">0</span></button>
+        <span id="auth-status" class="auth-status" role="status" aria-live="polite">Guest</span>
+        <button id="auth-action" type="button" class="btn btn-outline header-auth" aria-haspopup="dialog">Log in</button>
+        <a href="#collection" class="btn btn-primary header-cta">Shop collection <span class="btn-arrow" aria-hidden="true">↗</span></a>
+        <button class="icon-btn menu-btn" id="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links" type="button"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section id="home" class="container hero" aria-labelledby="main-heading">
+      <div class="hero-copy">
+        <div class="eyebrow hero-eyebrow">New perspectives on technology</div>
+        <h1 id="main-heading"><span>INFINITE</span><span class="gradient">POSSIBILITIES.</span></h1>
+        <p class="hero-description">A new dimension of technology. Discover visionary gadgets that bring imagination and everyday life together.</p>
+        <div class="hero-actions"><a href="#collection" class="btn btn-primary">Explore collection <span class="btn-arrow" aria-hidden="true">→</span></a><button class="btn btn-outline" type="button" data-view="smartphone">Meet the smartphone <span class="btn-arrow" aria-hidden="true">↗</span></button><button class="btn btn-subtle" type="button" data-customize="smartphone">Customize the smartphone ✧</button></div>
+        <div class="hero-note">Designed to imagine beyond tomorrow</div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/smartphone.webp" alt="Front and back concept views of a black-and-gold LUXEVO smartphone" fetchpriority="high">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="visual-caption"><div><span class="eyebrow">Introducing the collection</span><h2>LUXEVO Smartphone</h2></div><span class="visual-index">01 / 05</span></div>
+      </div>
+    </section>
+    <div class="divider-line"></div>
+    <div class="container discovery-band" aria-label="Brand highlights"><div class="discovery-item"><span class="num">01</span><span>Bold design language</span></div><div class="discovery-item"><span class="num">02</span><span>Distinctive product concepts</span></div><div class="discovery-item"><span class="num">03</span><span>Infinite imagination</span></div></div>
+    <div class="divider-line"></div>
+    <section class="container collection" id="collection" aria-labelledby="collection-heading">
+      <div class="section-head"><div><span class="eyebrow">Discover the collection</span><h2 id="collection-heading">Five visions. One future.</h2><p>Explore our smartphone, smartwatch, tablet, wireless earbuds, and laptop concept collection.</p></div><a href="#contact" class="btn btn-outline">Request details <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
+      <div class="filter-area"><label for="product-search" class="search-wrap"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Search the collection</span><input class="search-input" id="product-search" type="search" placeholder="Search the collection…" autocomplete="off"></label><button class="filter-clear" id="clear-search" type="button">Clear search</button><span class="filter-status" id="filter-status" role="status" aria-live="polite">Showing 5 products</span></div>
+      <div class="product-grid" id="product-grid">
+        <article class="product-card feature" data-product="smartphone" data-search="smartphone phone mobile gold black camera"><figure><img loading="lazy" src="assets/smartphone.webp" alt="Black-and-gold LUXEVO smartphone concept, front and rear views"></figure><span class="card-badge">01 · Signature concept</span><div class="card-content"><span class="card-number">DISCOVER / 01</span><h3>LUXEVO Smartphone</h3><p>An extraordinary silhouette. A whole new perspective.</p><div class="card-actions"><button class="btn btn-primary" type="button" data-view="smartphone">View product <span aria-hidden="true">↗</span></button><button class="btn btn-subtle" type="button" data-customize="smartphone" aria-label="Customize LUXEVO smartphone; account required">Customize ✧</button><button class="btn btn-outline" type="button" data-add="smartphone">Add to inquiry +</button></div></div></article>
+        <article class="product-card" data-product="smartwatch" data-search="smartwatch watch wearable drone gold black"><figure><img loading="lazy" src="assets/smartwatch.webp" alt="Gold-and-black LUXEVO smartwatch concept with a miniature drone alongside"></figure><span class="card-badge">02 · Wearable concept</span><div class="card-content"><span class="card-number">DISCOVER / 02</span><h3>LUXEVO Smartwatch</h3><p>More than a watch. A wider perspective.</p><div class="card-actions"><button class="btn btn-primary" type="button" data-view="smartwatch">View product <span aria-hidden="true">↗</span></button><button class="btn btn-subtle" type="button" data-customize="smartwatch" aria-label="Customize LUXEVO smartwatch; account required">Customize ✧</button><button class="btn btn-outline" type="button" data-add="smartwatch">Add to inquiry +</button></div></div></article>
+        <article class="product-card" data-product="tablet" data-search="tablet touch screen keyboard digital stylus landscape"><figure><img loading="lazy" src="assets/tablet.webp" alt="LUXEVO tablet concept with a detachable-style keyboard and landscape display"></figure><span class="card-badge">03 · Creativity concept</span><div class="card-content"><span class="card-number">DISCOVER / 03</span><h3>LUXEVO Tablet</h3><p>A bigger canvas for bolder ideas.</p><div class="card-actions"><button class="btn btn-primary" type="button" data-view="tablet">View product <span aria-hidden="true">↗</span></button><button class="btn btn-subtle" type="button" data-customize="tablet" aria-label="Customize LUXEVO tablet; account required">Customize ✧</button><button class="btn btn-outline" type="button" data-add="tablet">Add to inquiry +</button></div></div></article>
+        <article class="product-card" data-product="earbuds" data-search="wireless earbuds audio headphones music charging case gold metallic"><figure><img loading="lazy" src="assets/earbuds.webp" alt="Metallic-gold LUXEVO wireless earbuds and touchscreen-style charging case concept"></figure><span class="card-badge">04 · Audio concept</span><div class="card-content"><span class="card-number">DISCOVER / 04</span><h3>LUXEVO Wireless Earbuds</h3><p>Personal audio, reimagined with character.</p><div class="card-actions"><button class="btn btn-primary" type="button" data-view="earbuds">View product <span aria-hidden="true">↗</span></button><button class="btn btn-subtle" type="button" data-customize="earbuds" aria-label="Customize LUXEVO earbuds; account required">Customize ✧</button><button class="btn btn-outline" type="button" data-add="earbuds">Add to inquiry +</button></div></div></article>
+        <article class="product-card" data-product="laptop" data-search="laptop computer notebook projector projection productivity"><figure><img loading="lazy" src="assets/laptop.webp" alt="LUXEVO laptop concept with a projected presentation appearing on a wall"></figure><span class="card-badge">05 · Workstation concept</span><div class="card-content"><span class="card-number">DISCOVER / 05</span><h3>LUXEVO Laptop</h3><p>A vision of productivity beyond the screen.</p><div class="card-actions"><button class="btn btn-primary" type="button" data-view="laptop">View product <span aria-hidden="true">↗</span></button><button class="btn btn-subtle" type="button" data-customize="laptop" aria-label="Customize LUXEVO laptop; account required">Customize ✧</button><button class="btn btn-outline" type="button" data-add="laptop">Add to inquiry +</button></div></div></article>
+      </div>
+      <p class="empty-state" id="empty-state" hidden>No matching products found. Try a different search or clear your search.</p>
+    </section>
+    <section class="container story" id="about" aria-labelledby="about-heading"><div class="story-frame"><span class="eyebrow">The LUXEVO vision</span><h2 id="about-heading">Tomorrow looks different from here.</h2><p>Our collection explores the meeting point between bold design, personal expression, and next-generation technology. It begins with one idea: infinite possibilities.</p></div></section>
+    <section class="container connect" id="contact" aria-labelledby="contact-heading"><div class="connect-grid"><div class="connect-text"><span class="eyebrow">Stay curious</span><h2 id="contact-heading">Find your next possibility.</h2><p>Select the gadgets you're interested in and prepare a message for the LUXEVO team. This showcase does not process purchases or collect payments.</p><p>Price, stock, technical specifications, and ordering information can be added once officially confirmed.</p></div><div class="inquiry-box"><h3>Your product inquiry</h3><p>Add products using the collection above, then copy your inquiry to share with the store.</p><ul id="contact-list" class="inquiry-items" aria-live="polite"><li>No products selected yet.</li></ul><label class="field-label" for="customer-message">Your message (optional)</label><textarea class="field-input" id="customer-message" rows="3" placeholder="I'd like to know more about…"></textarea><div class="form-actions"><button class="btn btn-primary" id="copy-inquiry" type="button">Copy inquiry <span aria-hidden="true">↗</span></button><button class="btn btn-outline" id="save-inquiry" type="button">Save as text</button></div><p class="hint">Inquiries remain available without logging in; nothing is sent automatically.</p><div class="saved-designs" aria-labelledby="saved-title"><h4 id="saved-title">Your saved designs</h4><p class="saved-explainer" id="saved-status">Sign in and select Customize on a device to save a visual concept.</p><ul id="saved-design-list" class="saved-design-list" aria-live="polite"></ul></div></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container"><div class="footer-row"><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">∞</span><span>LUXEVO</span></a><div class="footer-links"><a href="#collection">Products</a><a href="#about">Vision</a><a href="#contact">Contact</a></div></div><p class="footer-note">© <span id="copyright-year">2026</span> LUXEVO concept collection. Product visuals were supplied for this project. This is a concept showcase, not a live checkout. Features implied by imagery have not been independently verified; official specifications, stock and pricing have not been provided.</p></div></footer>
+  <div class="overlay" id="product-overlay" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" tabindex="-1"><button type="button" class="close-dialog" data-close aria-label="Close product details">×</button><div class="dialog-layout"><img class="dialog-photo" id="dialog-photo" src="assets/smartphone.webp" alt=""><div class="dialog-copy"><span class="eyebrow">The LUXEVO collection</span><h2 id="dialog-title">LUXEVO Smartphone</h2><p id="dialog-description"></p><p class="micro">This is a product concept showcase. Confirmed specifications and prices are not yet available.</p><div class="dialog-action-row"><button class="btn btn-primary" id="dialog-add" type="button">Add to inquiry +</button><button class="btn btn-subtle" id="dialog-customize" type="button">Customize ✧</button><button class="btn btn-outline" type="button" data-close>Back to collection</button></div></div></div></section></div>
+  <div class="overlay drawer-overlay" id="drawer-overlay" hidden><aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1"><button type="button" class="close-dialog" data-close aria-label="Close inquiry list">×</button><span class="eyebrow">Your shortlist</span><h2 id="drawer-title">Inquiry list</h2><p class="intro">Save products you're interested in. No purchase is made here.</p><ul class="drawer-list" id="drawer-list"></ul><div class="drawer-actions"><button class="btn btn-primary" id="drawer-contact" type="button">Prepare inquiry <span aria-hidden="true">→</span></button><button class="btn btn-outline" type="button" id="drawer-clear">Clear list</button></div><p class="drawer-note">Use “Copy inquiry” in the contact section to share your selection.</p></aside></div>
+  <!-- Product customization is shown only after Firebase confirms the user is signed in. -->
+  <div class="overlay" id="customize-overlay" hidden>
+    <section class="dialog customizer-dialog" role="dialog" aria-modal="true" aria-labelledby="customize-title" aria-describedby="customize-summary" tabindex="-1">
+      <button type="button" class="close-dialog" data-close aria-label="Close customization">×</button>
+      <div class="customizer-layout">
+        <div class="customizer-showcase" id="customize-showcase">
+          <img id="customize-image" src="assets/smartphone.webp" alt="" />
+          <div class="customize-image-label"><span class="eyebrow">Your LUXEVO concept</span><strong id="customize-preview-label">Your Signature</strong></div>
+        </div>
+        <div class="customizer-fields">
+          <span class="eyebrow">Private customization panel</span>
+          <h2 id="customize-title">Customize your device</h2>
+          <p class="customize-summary" id="customize-summary">Sign in to save your personalized concept.</p>
+          <p class="customize-user" id="customize-user"></p>
+          <form id="customize-form">
+            <fieldset class="accent-fieldset"><legend>Choose an accent lighting concept</legend>
+              <label class="accent-option"><input type="radio" name="accent" value="violet" checked/><span class="swatch swatch-violet" aria-hidden="true"></span> Electric violet</label>
+              <label class="accent-option"><input type="radio" name="accent" value="gold"/><span class="swatch swatch-gold" aria-hidden="true"></span> Signature gold</label>
+              <label class="accent-option"><input type="radio" name="accent" value="blue"/><span class="swatch swatch-blue" aria-hidden="true"></span> Sapphire blue</label>
+            </fieldset>
+            <label class="auth-label" for="customize-label">Personalization label <span class="optional">(optional)</span></label>
+            <input class="auth-input" id="customize-label" type="text" placeholder="e.g. MY LUXEVO" maxlength="24" autocomplete="off" />
+            <p class="customize-limit" id="customize-limit">0 / 24 characters</p>
+            <p class="concept-disclaimer">This is a visual design concept—not a confirmed hardware color, engraving service, or actual product order.</p>
+            <p class="customize-feedback" id="customize-feedback" role="status" aria-live="polite"></p>
+            <div class="dialog-action-row"><button type="submit" class="btn btn-primary">Save my design</button><button type="button" class="btn btn-outline" id="customize-inquiry">Add to inquiry +</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- Account UI: Firebase Authentication handles user credentials. No passwords are stored in this page. -->
+  <div class="overlay" id="auth-overlay" hidden>
+    <section class="dialog auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-heading" aria-describedby="auth-description" tabindex="-1">
+      <button type="button" class="close-dialog" data-close aria-label="Close account window">×</button>
+      <span class="eyebrow">LUXEVO member access</span>
+      <h2 id="auth-heading">Welcome back.</h2>
+      <p class="auth-copy" id="auth-description">Browse the collection freely. Log in to customize a device.</p>
+      <div class="auth-switch" id="auth-tabs" role="tablist" aria-label="Account options">
+        <button type="button" id="auth-login-tab" role="tab" aria-selected="true">Log in</button>
+        <button type="button" id="auth-signup-tab" role="tab" aria-selected="false">Create account</button>
+      </div>
+      <form id="auth-form" novalidate>
+        <label for="auth-email" class="auth-label">Email address</label>
+        <input class="auth-input" type="email" id="auth-email" name="email" autocomplete="email" spellcheck="false" required placeholder="you@example.com" maxlength="254" />
+        <div id="auth-password-wrap">
+          <label for="auth-password" class="auth-label">Password</label>
+          <input class="auth-input" type="password" id="auth-password" name="password" autocomplete="current-password" minlength="8" required placeholder="Your account password" />
+        </div>
+        <div id="auth-confirm-wrap" hidden>
+          <label for="auth-confirm" class="auth-label">Confirm password</label>
+          <input class="auth-input" type="password" id="auth-confirm" name="confirm-password" autocomplete="new-password" placeholder="Re-enter password" />
+        </div>
+        <label class="auth-show" id="auth-show-row"><input type="checkbox" id="auth-show-password"/> Show password</label>
+        <p class="auth-error" id="auth-error" role="alert" hidden></p>
+        <p class="auth-notice" id="auth-notice" role="status" aria-live="polite" hidden></p>
+        <button class="btn btn-primary auth-submit" id="auth-submit" type="submit">Log in</button>
+      </form>
+      <div class="auth-link-row">
+        <button type="button" class="auth-link" id="auth-forgot">Forgot password?</button>
+        <button type="button" class="auth-link" id="auth-back-login" hidden>Back to log in</button>
+      </div>
+      <p class="auth-note">New here? Select <strong>Create account</strong> above. Your password is handled by Firebase Authentication, not stored in GitHub Pages.</p>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+    (() => {
+      'use strict';
+      const products = {
+        smartphone: { name:'LUXEVO Smartphone', image:'assets/smartphone.webp', alt:'Front and rear views of black-and-gold LUXEVO smartphone concept', description:'A striking black-and-gold smartphone concept with a distinctive multi-camera-inspired design and a luminous infinity emblem. A vision for a bold digital future.' },
+        smartwatch: { name:'LUXEVO Smartwatch', image:'assets/smartwatch.webp', alt:'Gold-and-black smartwatch concept with miniature drone illustration', description:'An expressive gold-and-black wearable concept, shown alongside a small drone illustration. Created to spark curiosity about what connected technology could become.' },
+        tablet: { name:'LUXEVO Tablet', image:'assets/tablet.webp', alt:'Tablet concept displayed with keyboard', description:'A refined tablet-and-keyboard concept that brings a larger digital canvas to the LUXEVO family, with a dramatic display and minimalist accessories.' },
+        earbuds: { name:'LUXEVO Wireless Earbuds', image:'assets/earbuds.webp', alt:'Metallic-gold earbuds beside a display-equipped charging case concept', description:'A distinctive metallic-gold personal audio concept, featuring a visually striking charging case with a display-inspired front panel.' },
+        laptop: { name:'LUXEVO Laptop', image:'assets/laptop.webp', alt:'Laptop concept with an illustrated projected presentation', description:'A premium laptop concept presented with a vivid projection illustration, exploring an imaginative take on next-generation workspaces.' }
+      };
+      const $ = id => document.getElementById(id);
+      const selections = new Set();
+      let activeOverlay = null, returnFocus = null, toastTimeout = null;
+      const productOverlay = $('product-overlay'), drawerOverlay = $('drawer-overlay'), authOverlay = $('auth-overlay');
+      const customizeOverlay=$('customize-overlay');
+      const accentColors={violet:'#ab85ff',gold:'#e6bb78',blue:'#4796ff'};
+      const accentNames={violet:'Electric violet',gold:'Signature gold',blue:'Sapphire blue'};
+      let currentUser=null, pendingCustomize=null, selectedCustomize=null, savedCustomizations={};
+      let authStateChecked=false;
+      function getSavedKey(){return currentUser ? `luxevo:designs:v1:${currentUser.uid}` : null;}
+      function loadDesigns(){
+        savedCustomizations={};
+        if(!currentUser)return;
+        try {const value=JSON.parse(localStorage.getItem(getSavedKey())||'{}');
+          if(value && typeof value==='object' && !Array.isArray(value)) savedCustomizations=value;
+        } catch {savedCustomizations={};}
+      }
+      function refreshSaved(){
+        const list=$('saved-design-list'); list.replaceChildren();
+        if(!currentUser){$('saved-status').textContent='Log in and choose Customize on any device to save a design.';return;}
+        const rows=Object.entries(savedCustomizations).filter(([key,entry])=>products[key] && entry && accentNames[entry.accent]);
+        $('saved-status').textContent=rows.length ? `Saved on this browser for ${currentUser.email||'your account'}:` : 'No saved designs yet. Select Customize on a device to get started.';
+        rows.forEach(([key,entry])=>{
+          const row=document.createElement('li');const label=document.createElement('span');
+          label.textContent=`${products[key].name} · ${accentNames[entry.accent]}${entry.label?' · '+entry.label:''}`;
+          const button=document.createElement('button');button.type='button';button.textContent='Edit design';
+          button.addEventListener('click',()=>requestCustomize(key));row.append(label,button);list.append(row);
+        });
+      }
+      document.addEventListener('luxevo:auth-state',event=>{
+        const next=event.detail.user;
+        if(currentUser?.uid!==next?.uid){currentUser=next;loadDesigns();refreshSaved();}
+        else currentUser=next;
+        authStateChecked=true;
+        if(!currentUser && activeOverlay===customizeOverlay)closeOverlay();
+      });
+      // After Firebase confirms login, resume the customization the guest requested.
+      document.addEventListener('luxevo:auth-success',()=>{
+        const user=window.LUXEVOAccount?.getUser();
+        if(user && !currentUser){currentUser={uid:user.uid,email:user.email};loadDesigns();refreshSaved();}
+        if(pendingCustomize && currentUser){const key=pendingCustomize;pendingCustomize=null;openCustomizer(key);}
+      });
+      function requestCustomize(key){
+        if(!products[key])return;
+        const user=window.LUXEVOAccount?.getUser();
+        if(!currentUser && user){currentUser={uid:user.uid,email:user.email};loadDesigns();refreshSaved();}
+        if(!currentUser){
+          pendingCustomize=key;
+          if(activeOverlay)closeOverlay();
+          if(!window.LUXEVOAuthLoaded){
+            showOverlay(authOverlay,'#auth-email');
+            $('auth-error').textContent='Account service is loading. If sign-in does not start, check your internet connection and Firebase configuration.';
+            $('auth-error').hidden=false;
+          }else document.dispatchEvent(new Event('luxevo:request-login'));
+          return;
+        }
+        pendingCustomize=null;
+        if(activeOverlay)closeOverlay();
+        openCustomizer(key);
+      }
+      function updateCustomizerPreview(){
+        const value=document.querySelector('input[name="accent"]:checked')?.value||'violet';
+        $('customize-showcase').style.setProperty('--accent-glow',accentColors[value]);
+        const label=$('customize-label').value.trim();
+        $('customize-preview-label').textContent=label||'Your Signature';
+        $('customize-limit').textContent=`${$('customize-label').value.length} / 24 characters`;
+      }
+      function openCustomizer(key){
+        if(!currentUser){requestCustomize(key);return;}
+        selectedCustomize=key;
+        const p=products[key],prior=savedCustomizations[key]||{};
+        $('customize-title').textContent=`Customize ${p.name.replace('LUXEVO ','')}`;
+        $('customize-summary').textContent=`Explore a visual personalization for your ${p.name}.`;
+        $('customize-user').textContent=`Signed in as ${currentUser.email||'LUXEVO member'}`;
+        $('customize-image').src=p.image;$('customize-image').alt=p.alt;
+        $('customize-label').value=typeof prior.label==='string'?prior.label:'';
+        document.querySelectorAll('input[name="accent"]').forEach(r=>{r.checked=r.value===(prior.accent||'violet')});
+        $('customize-feedback').textContent=''; updateCustomizerPreview();
+        showOverlay(customizeOverlay,'#customize-label');
+      }
+      document.querySelectorAll('[data-customize]').forEach(button=>button.addEventListener('click',()=>requestCustomize(button.dataset.customize)));
+      $('dialog-customize').addEventListener('click',()=>requestCustomize($('dialog-add').dataset.product));
+      document.querySelectorAll('input[name="accent"]').forEach(input=>input.addEventListener('change',updateCustomizerPreview));
+      $('customize-label').addEventListener('input',updateCustomizerPreview);
+      $('customize-form').addEventListener('submit',event=>{
+        event.preventDefault();
+        // Check Firebase user again at the point of saving, not only on modal opening.
+        const user=window.LUXEVOAccount?.getUser();
+        if(!currentUser || !user || user.uid!==currentUser.uid){closeOverlay();requestCustomize(selectedCustomize);return;}
+        if(!selectedCustomize || !products[selectedCustomize])return;
+        const accent=document.querySelector('input[name="accent"]:checked')?.value||'violet';
+        if(!accentNames[accent])return;
+        const label=$('customize-label').value.trim().slice(0,24);
+        const newDesigns={...savedCustomizations,[selectedCustomize]:{accent,label}};
+        try{localStorage.setItem(getSavedKey(),JSON.stringify(newDesigns)); savedCustomizations=newDesigns;
+          refreshSaved();$('customize-feedback').textContent='Design saved on this browser for your signed-in account.';
+          toast(`${products[selectedCustomize].name} customization saved.`);
+        }catch{$('customize-feedback').textContent='Could not save locally. Enable browser storage and try again.';}
+      });
+      $('customize-inquiry').addEventListener('click',()=>{
+        if(!currentUser || !window.LUXEVOAccount?.getUser()){requestCustomize(selectedCustomize);return;}
+        if(selectedCustomize){addProduct(selectedCustomize);$('customize-feedback').textContent='Device added to your inquiry list. Save your visual design separately using Save my design.';}
+      });
+      refreshSaved();
+
+      const toast = msg => { const node=$('toast'); node.textContent=msg; node.hidden=false; clearTimeout(toastTimeout); toastTimeout=setTimeout(()=>{node.hidden=true},3500) };
+      function refreshList(){
+        $('cart-count').textContent=selections.size;
+        $('open-drawer').setAttribute('aria-label',`Open inquiry list, ${selections.size} products`);
+        const drawer=$('drawer-list'), contact=$('contact-list');
+        drawer.replaceChildren(); contact.replaceChildren();
+        if(!selections.size){const li=document.createElement('li'); li.textContent='No products selected yet.'; contact.append(li);const li2=document.createElement('li');li2.className='intro';li2.textContent='Your inquiry list is empty. Add a product from the collection.';drawer.append(li2);}
+        for(const key of selections){
+          const p=products[key];const li=document.createElement('li'); li.textContent=p.name;contact.append(li);
+          const row=document.createElement('li');row.className='drawer-item';
+          const img=document.createElement('img');img.src=p.image;img.alt='';const name=document.createElement('span');name.textContent=p.name;
+          const remove=document.createElement('button');remove.type='button';remove.textContent='Remove';remove.setAttribute('aria-label',`Remove ${p.name}`);remove.addEventListener('click',()=>removeProduct(key));
+          row.append(img,name,remove);drawer.append(row);
+        }
+        document.querySelectorAll('[data-add]').forEach(button=>{
+          const added=selections.has(button.dataset.add);
+          button.textContent=added?'Added ✓':'Add to inquiry +';
+          button.setAttribute('aria-pressed',String(added));
+        });
+        if($('dialog-add').dataset.product){const added=selections.has($('dialog-add').dataset.product);$('dialog-add').textContent=added?'Added to inquiry ✓':'Add to inquiry +';$('dialog-add').setAttribute('aria-pressed',String(added));}
+      }
+      function addProduct(key){if(selections.has(key)){toast('Already on your inquiry list.');return;}selections.add(key);refreshList();toast(`${products[key].name} added to your inquiry list.`);}
+      function removeProduct(key){selections.delete(key);refreshList();toast(`${products[key].name} removed.`)}
+      function showOverlay(el,focusSelector){returnFocus=document.activeElement;activeOverlay=el;el.hidden=false;document.body.classList.add('modal-open');const target=el.querySelector(focusSelector)||el.querySelector('[role="dialog"]');target.focus();}
+      function closeOverlay(){if(!activeOverlay)return;activeOverlay.hidden=true;activeOverlay=null;document.body.classList.remove('modal-open');if(returnFocus?.isConnected)returnFocus.focus();}
+      function showProduct(key){const p=products[key];$('dialog-photo').src=p.image;$('dialog-photo').alt=p.alt;$('dialog-title').textContent=p.name;$('dialog-description').textContent=p.description;$('dialog-add').dataset.product=key;refreshList();showOverlay(productOverlay,'.close-dialog')}
+      function openDrawer(){refreshList();showOverlay(drawerOverlay,'.close-dialog')}
+      function inquiryText(){const selected=[...selections].map(x=>{
+          const design=currentUser && savedCustomizations[x];
+          return `- ${products[x].name}${design && accentNames[design.accent] ? ' | Visual concept: '+accentNames[design.accent]+(design.label?', label: '+design.label:'') : ''}`;
+        }).join('\n')||'- No products selected';const note=$('customer-message').value.trim();return `LUXEVO PRODUCT INQUIRY\n\nProducts of interest:\n${selected}\n\n${note?'My message:\n'+note+'\n\n':''}Please share official specifications, pricing, and availability.\n\nPrepared from the LUXEVO concept website.`}
+      async function copyInquiry(){const txt=inquiryText();try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(txt)}else{const t=document.createElement('textarea');t.value=txt;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();const success=document.execCommand('copy');t.remove();if(!success)throw new Error('Clipboard unavailable')}toast('Inquiry copied. Paste it into your preferred messaging app.')}catch{toast('Clipboard blocked by this browser. Use “Save as text” instead.')}}
+      function saveInquiry(){const blob=new Blob([inquiryText()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LUXEVO-product-inquiry.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Inquiry text file prepared.');}
+
+      // Shared modal access for Firebase auth module (real credentials never in this page).
+      window.LUXEVOAuthUI = Object.freeze({
+        open(){ closeMenu(); showOverlay(authOverlay,'#auth-email'); },
+        close(){ if(activeOverlay===authOverlay) closeOverlay(); },
+        notify:toast
+      });
+      $('auth-action').addEventListener('click',()=>{
+        closeMenu();
+        document.dispatchEvent(new Event('luxevo:auth-action'));
+        // If the module is blocked, show a helpful error instead of a dead button.
+        if(!window.LUXEVOAuthLoaded){
+          showOverlay(authOverlay,'#auth-email');
+          $('auth-error').textContent='Authentication is loading, or the connection is unavailable. Make sure you are using the published HTTPS site and have configured Firebase.';
+          $('auth-error').hidden=false;
+        }
+      });
+      document.querySelectorAll('[data-view]').forEach(btn=>btn.addEventListener('click',()=>showProduct(btn.dataset.view)));
+      document.querySelectorAll('[data-add]').forEach(btn=>btn.addEventListener('click',()=>{const key=btn.dataset.add;selections.has(key)?removeProduct(key):addProduct(key)}));
+      document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',closeOverlay));
+      [productOverlay,drawerOverlay,authOverlay,customizeOverlay].forEach(el=>el.addEventListener('click',e=>{if(e.target===el)closeOverlay()}));
+      $('open-drawer').addEventListener('click',openDrawer);
+      $('dialog-add').addEventListener('click',()=>{const key=$('dialog-add').dataset.product;selections.has(key)?removeProduct(key):addProduct(key)});
+      $('drawer-clear').addEventListener('click',()=>{selections.clear();refreshList();toast('Inquiry list cleared.')});
+      $('drawer-contact').addEventListener('click',()=>{closeOverlay();$('contact').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});setTimeout(()=>$('customer-message').focus({preventScroll:true}),200)});
+      $('copy-inquiry').addEventListener('click',copyInquiry);$('save-inquiry').addEventListener('click',saveInquiry);
+      const search=$('product-search');
+      function filterCards(){const query=search.value.trim().toLowerCase();let shown=0;document.querySelectorAll('.product-card').forEach(card=>{const match=(card.dataset.search+' '+products[card.dataset.product].name).toLowerCase().includes(query);card.hidden=!match;card.style.display=match?'':'none';if(match)shown++});$('filter-status').textContent=`Showing ${shown} product${shown===1?'':'s'}`;$('empty-state').hidden=shown!==0;}
+      search.addEventListener('input',filterCards);$('clear-search').addEventListener('click',()=>{search.value='';filterCards();search.focus()});$('nav-search').addEventListener('click',()=>{closeMenu();$('collection').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});setTimeout(()=>search.focus({preventScroll:true}),250)});
+      const menu=$('nav-links'),menuBtn=$('menu-button');function closeMenu(){menu.dataset.open='false';menuBtn.setAttribute('aria-expanded','false');menuBtn.setAttribute('aria-label','Open menu')};menuBtn.addEventListener('click',()=>{const open=menu.dataset.open!=='true';menu.dataset.open=String(open);menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu')});menu.querySelectorAll('a').forEach(x=>x.addEventListener('click',closeMenu));
+      document.addEventListener('keydown',e=>{
+        if(e.key==='Escape'){if(activeOverlay){e.preventDefault();closeOverlay()}else closeMenu()}
+        if(e.key!=='Tab'||!activeOverlay)return;
+        const focusable=[...activeOverlay.querySelectorAll('button:not([disabled]),a[href],input,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>x.getClientRects().length);
+        if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+      });
+      $('copyright-year').textContent=new Date().getFullYear();refreshList();
+    })();
+  </script>
+  <script type="module" src="./auth.js"></script>
+</body>
+</html>
